@@ -1,3 +1,6 @@
 - Use react-native-pdf package to read the receipt file from Veryfi and display that in the receiptscreen
 -Use the react-native-orientation package(already installed) to change the orientation of scanscreen upon opening the screen
 -Do the necessary code refactoring
+
+
+- Use react-native-background-fetch to read backend information for the user receipt
