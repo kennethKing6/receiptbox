@@ -3,17 +3,18 @@ import { createAppContainer } from "react-navigation";
 import { createStackNavigator } from "react-navigation-stack";
 import { AppLoading } from "expo";
 import * as Font from "expo-font";
-import ReceiptScreen from "./src/screens/ReceiptScreen/ReceiptScreen";
-import Purchases from "./src/screens/ExpenseScreen/Purchases";
-import Stores from "./src/screens/Stores";
-import ScanScreen from "./src/screens/ScanScreen";
-import SigninScreen from "./src/screens/SigninScreen";
-import Menu from "./src/screens/Menu";
-import * as firebase from 'firebase';
-import Signup from "./src/screens/Signup";
-import UserEmailScreen from "./src/screens/UserEmailScreen";
 
-import AppCredentialScreen from "./src/screens/AppCredentialScreen";
+import ReceiptScreen from "./src/screens/ReceiptScreen/ReceiptScreen";
+import PurchasesScreen from "./src/screens/ExpenseScreen/Purchases";
+import StoresScreen from "./src/screens/StoresScreen/StoresScreen";
+import ScanScreen from "./src/screens/ScanScreen/ScanScreen";
+import SigninScreen from "./src/screens/SigninScreen/SigninScreen";
+import MenuScreen from "./src/screens/MenuScreen/MenuScreen";
+import ReceiptListScreen from "./src/screens/RecipesListScreen/RecipesListScreen";
+import * as firebase from 'firebase';
+import SignupScreen from "./src/screens/SignupScreen/SignupScreen";
+import UserEmailScreen from "./src/screens/UserEmailScreen/UserEmailScreen";
+import AppCredentialScreen from "./src/screens/AppCredentialScreen/AppCredentialScreen";
 
 import {BackgroundTaskOperation} from './src/BackgroundTask/BackgroundOpertaions';
 
@@ -41,12 +42,13 @@ const StackNavigation = createStackNavigator(
     SigninScreen:SigninScreen,
     ScanScreen: ScanScreen,
     ReceiptScreen: ReceiptScreen,
-    Purchases: Purchases,
-    Stores: Stores,
-    Menu: Menu,
-    Signup:Signup,
-    AppCredentialScreen,
-    UserEmailScreen
+    PurchasesScreen: PurchasesScreen,
+    StoresScreen: StoresScreen,
+    MenuScreen: MenuScreen,
+    SignupScreen:SignupScreen,
+    AppCredentialScreen:AppCredentialScreen,
+    UserEmailScreen:UserEmailScreen,
+    ReceiptListScreen:ReceiptListScreen
   },
   {
     headerMode: "none"
