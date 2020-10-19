@@ -5,6 +5,7 @@ import android.content.Context;
 import android.net.Uri;
 import com.facebook.react.PackageList;
 import com.facebook.react.ReactApplication;
+import com.RNFetchBlob.RNFetchBlobPackage;
 import com.github.yamill.orientation.OrientationPackage;
 import com.transistorsoft.rnbackgroundfetch.RNBackgroundFetchPackage;
 import com.horcrux.svg.SvgPackage;

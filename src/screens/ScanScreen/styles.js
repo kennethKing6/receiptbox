@@ -1,7 +1,8 @@
+import { StyleSheet} from "react-native";
+
 const styles = StyleSheet.create({
     container: {
       flex: 1,
-      backgroundColor: "#C5D961",
     },
     content:{
       marginTop:"4%",
@@ -23,6 +24,7 @@ const styles = StyleSheet.create({
       color: "rgba(255,255,255,1)",
       fontSize: 45,
       textAlign: "center",
+      
      
     },
     cupertinoButtonPurple1: {
@@ -34,7 +36,8 @@ const styles = StyleSheet.create({
      
     },
     barcode:{
-      marginTop:"50%"
+     margin:0,
+     
     }
   });
 export default styles;  

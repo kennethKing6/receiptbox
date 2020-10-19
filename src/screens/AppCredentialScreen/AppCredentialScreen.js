@@ -6,6 +6,8 @@ import { MaterialIcons } from '@expo/vector-icons';
 import * as firebase from 'firebase';
 import {UserData} from '../../model/UserData';
 import {LocalStorageKeys} from '../../BackgroundTask/LocalStorageConstantsKeys';
+import Orientation from 'react-native-orientation';
+
 
 import styles from './styles';
 
@@ -22,7 +24,12 @@ function AppCredentialScreen(props) {
   const [generatedPassword,setGeneratedPassword] = useState(props.navigation.state.params.userData.password);
 
 
-
+ //Lock Screen to portrait
+ Orientation.addOrientationListener((orientation)=>{
+  if(orientation == "LANDSCAPE"){
+    Orientation.lockToPortrait();
+  }
+})
 
   function createMailbox(generatedEmail,generatedPassword){
     const url = "http://getreceipts.getreceiptbox.com/createEmail/cpemail.php?user_email_name=" + generatedEmail + "&user_email_password=" + generatedPassword;

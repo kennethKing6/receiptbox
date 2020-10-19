@@ -5,6 +5,8 @@ import { recipes } from '../data/dataArrays';
 import MenuImage from '../../components/MenuImage/MenuImage';
 import DrawerActions from 'react-navigation';
 import { getCategoryName } from '../data/MockDataAPI';
+import Orientation from 'react-native-orientation';
+
 
 export default class HomeScreen extends React.Component {
   static navigationOptions = ({ navigation }) => ({
@@ -20,6 +22,12 @@ export default class HomeScreen extends React.Component {
 
   constructor(props) {
     super(props);
+   //Lock Screen to portrait
+   Orientation.addOrientationListener((orientation)=>{
+    if(orientation == "LANDSCAPE"){
+      Orientation.lockToPortrait();
+    }
+  })
   }
 
   onPressRecipe = item => {

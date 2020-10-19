@@ -5,12 +5,20 @@ import CardView from 'react-native-cardview';
 import { MaterialIcons } from '@expo/vector-icons'; 
 import UserEmailGenerator from '../../model/UserEmailGenerator';
 import styles from './styles';
+import Orientation from 'react-native-orientation';
+
 
 
 
 function UserEmailScreen(props) {
   
-    
+ //Lock Screen to portrait
+ Orientation.addOrientationListener((orientation)=>{
+  if(orientation == "LANDSCAPE"){
+    Orientation.lockToPortrait();
+  }
+})
+
   return (
     <ImageBackground source={require("../../assets/images/getstarted.jpg")} style={styles.image}>
         <View style={styles.container}>

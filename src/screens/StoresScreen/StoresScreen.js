@@ -1,81 +1,45 @@
 import React, { Component } from "react";
-import { StyleSheet, View, Image, Text } from "react-native";
-import CustomStatusBar from '../../components/StatusBarLayout';
-import { TouchableOpacity } from "react-native-gesture-handler";
+import { StyleSheet, View, Image } from "react-native";
+import { ApplicationProvider, IconRegistry, Layout, Text } from '@ui-kitten/components';
+import { EvaIconsPack } from '@ui-kitten/eva-icons';
+import { default as theme } from '../../../assets/custom-theme.json';
+import * as eva from '@eva-design/eva';
+import TopNavigationComponent from '../../components/TopNavigationComponent/TopNavigationComponent';
+
 import styles from './styles';
+import Orientation from 'react-native-orientation';
+import CategoryListComponent from '../../components/ListItem/CategoryComponent';
+
 
 
 function Stores(props) {
+   //Lock Screen to portrait
+   Orientation.lockToPortrait();
+   const storesList = [
+    {
+      name: 'Superstore',
+      backgroundColor: '#1833CC'
+    },
+    {
+      name: 'Wallmart',
+      backgroundColor: '#F27407'
+     
+    },
+    {
+      name: 'Call It Spring',
+      backgroundColor: '#0D0D0D'
+    },
+    {
+      name: 'Canadian Airline',
+      backgroundColor: '#E50000'
+    }
+  ]
+  
   return (
-    <View style={styles.container}>
-        <CustomStatusBar onPress={props} header={"Stores"} />
-      <View style={styles.groupRow}>
-        <View style={styles.group}>
-          <TouchableOpacity onPress={()=>props.navigation.navigate("Purchases")}>
-            <Image
-              source={require("../../assets/images/starbucks.jpg")}
-              resizeMode="contain"
-              style={styles.image}
-            ></Image>
-            <Text style={styles.starbucks}>Starbucks</Text>
-          </TouchableOpacity>
-        </View>
-        <View style={styles.group}>
-            <TouchableOpacity onPress={()=>props.navigation.navigate("Purchases")}>
-              <Image
-              source={require("../../assets/images/starbucks.jpg")}
-              resizeMode="contain"
-              style={styles.image}
-            ></Image>
-            <Text style={styles.starbucks}>Starbucks</Text>
-            </TouchableOpacity>
-        </View>
-      </View>
-      <View style={styles.groupRow}>
-        <View style={styles.group}>
-            <TouchableOpacity onPress={()=>props.navigation.navigate("Purchases")}>
-              <Image
-              source={require("../../assets/images/starbucks.jpg")}
-              resizeMode="contain"
-              style={styles.image}
-            ></Image>
-            <Text style={styles.starbucks}>Starbucks</Text>
-            </TouchableOpacity>
-        </View>
-        <View style={styles.group}>
-            <TouchableOpacity onPress={()=>props.navigation.navigate("Purchases")}>
-                <Image
-                source={require("../../assets/images/starbucks.jpg")}
-                resizeMode="contain"
-                style={styles.image}
-              ></Image>
-              <Text style={styles.starbucks}>Starbucks</Text>
-            </TouchableOpacity>
-        </View>
-      </View>
-      <View style={styles.groupRow}>
-        <View style={styles.group} >
-          <TouchableOpacity onPress={()=>props.navigation.navigate("Purchases")}>
-            <Image
-              source={require("../../assets/images/starbucks.jpg")}
-              resizeMode="contain"
-              style={styles.image}
-            ></Image>
-            <Text style={styles.starbucks}>Starbucks</Text>
-          </TouchableOpacity>
-        </View>
-        <View style={styles.group}>
-            <TouchableOpacity onPress={()=>props.navigation.navigate("Purchases")}>
-              <Image
-              source={require("../../assets/images/starbucks.jpg")}
-              resizeMode="contain"
-              style={styles.image}
-            ></Image>
-            <Text style={styles.starbucks}>Starbucks</Text>
-            </TouchableOpacity>
-        </View>
-      </View>
-    </View>
+    <ApplicationProvider {...eva} theme={{ ...eva.light, ...theme }}>
+    <TopNavigationComponent title="" onPress={()=>props.navigation.navigate("MenuScreen")} backgroundColor="white"/>
+    <CategoryListComponent style={styles.container} numColumns={2} data={storesList} onPress={()=>props.navigation.navigate("ReceiptListScreen")}/>
+    </ApplicationProvider>
   );
 }
 

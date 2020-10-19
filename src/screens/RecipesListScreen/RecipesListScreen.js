@@ -1,54 +1,137 @@
 import React from 'react';
 import {
-  FlatList,
+  
   Text,
   View,
   TouchableHighlight,
-  Image
+  Image,
+  Dimensions
 } from 'react-native';
 import styles from './styles';
 import { getRecipes, getCategoryName } from '../data/MockDataAPI';
+import Orientation from 'react-native-orientation';
+import TopNavigationComponent from '../../components/TopNavigationComponent/TopNavigationComponent';
+import DividerListComponent from '../../components/ListItem/DividerListComponent';
+import {LineChart} from "react-native-chart-kit";
+import BottomNavigation from '../../components/BottomNavigation/BottomNavigationComponent';
 
-export default class RecipesListScreen extends React.Component {
-  static navigationOptions = ({ navigation }) => {
-    return {
-      title: navigation.getParam('title')
-    };
-  };
 
-  constructor(props) {
-    super(props);
+
+export default function RecipesListScreen(props) {
+  
+
+  Orientation.lockToPortrait();
+
+   
+  
+const receipts =[
+  {
+    code: "#9848928952757257725929",
+    date:"09/28/2020",
+    total:"$70"
+  },
+  {
+    code: "#9848928952757257725929",
+    date:"09/12/2020",
+    total:"$30"
+  },
+  {
+    code: "#9848928952757257725929",
+    date:"08/12/2020",
+    total:"$100"
+  },
+  {
+    code: "#9848928952757257725929",
+    date:"08/12/2020",
+    total:"$100"
+  },
+  {
+    code: "#9848928952757257725929",
+    date:"08/12/2020",
+    total:"$100"
+  },
+  {
+    code: "#9848928952757257725929",
+    date:"08/12/2020",
+    total:"$100"
+  },
+  {
+    code: "#9848928952757257725929",
+    date:"08/12/2020",
+    total:"$100"
+  },
+  {
+    code: "#9848928952757257725929",
+    date:"08/12/2020",
+    total:"$100"
+  },
+  {
+    code: "#9848928952757257725929",
+    date:"08/12/2020",
+    total:"$100"
+  },
+  {
+    code: "#9848928952757257725929",
+    date:"08/12/2020",
+    total:"$100"
   }
+]
+  
 
-  onPressRecipe = item => {
-    this.props.navigation.navigate('Recipe', { item });
-  };
-
-  renderRecipes = ({ item }) => (
-    <TouchableHighlight underlayColor='rgba(73,182,77,1,0.9)' onPress={() => this.onPressRecipe(item)}>
-      <View style={styles.container}>
-        <Image style={styles.photo} source={{ uri: item.photo_url }} />
-        <Text style={styles.title}>{item.title}</Text>
-        <Text style={styles.category}>{getCategoryName(item.categoryId)}</Text>
-      </View>
-    </TouchableHighlight>
-  );
-
-  render() {
-    const { navigation } = this.props;
-    const item = navigation.getParam('category');
-    const recipesArray = getRecipes(item.id);
+ 
     return (
       <View>
-        <FlatList
-          vertical
-          showsVerticalScrollIndicator={false}
-          numColumns={2}
-          data={recipesArray}
-          renderItem={this.renderRecipes}
-          keyExtractor={item => `${item.recipeId}`}
-        />
+        <TopNavigationComponent backgroundColor="white" onPress={()=>props.navigation.navigate("StoresScreen")} title=""/>
+        <LineChart
+    data={{
+      labels: ["January", "February", "March", "April", "May", "June"],
+      datasets: [
+        {
+          data: [
+            Math.random() * 100,
+            Math.random() * 100,
+            Math.random() * 100,
+            Math.random() * 100,
+            Math.random() * 100,
+            Math.random() * 100
+          ]
+        }
+      ]
+    }}
+    width={Dimensions.get("window").width}
+    height={220}
+    yAxisLabel="$"
+    yAxisSuffix="k"
+    yAxisInterval={1} // optional, defaults to 1
+    chartConfig={{
+      backgroundColor: "#e26a00",
+      backgroundGradientFrom: "#fb8c00",
+      backgroundGradientTo: "#ffa726",
+      decimalPlaces: 2, // optional, defaults to 2dp
+      color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
+      labelColor: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
+      style: {
+        borderRadius: 16
+      },
+      propsForDots: {
+        r: "6",
+        strokeWidth: "2",
+        stroke: "#ffa726"
+      }
+    }}
+    bezier
+    style={{
+      marginVertical: 8,
+      borderRadius: 16,
+      
+    }}
+  />
+      
+        <DividerListComponent  data={receipts} onPress={()=>props.navigation.navigate("ReceiptScreen")} />
+        <BottomNavigation/>
+
+       
       </View>
     );
-  }
+  
 }

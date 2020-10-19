@@ -6,6 +6,8 @@ import { MaterialIcons } from '@expo/vector-icons';
 import {UserEmailGenerator} from '../../model/UserEmailGenerator';
 import moment from 'moment';
 import styles from './styles';
+import Orientation from 'react-native-orientation';
+
 
 function generateUserCredentials(fn,ln,dob){
   var user = new UserEmailGenerator(fn,ln,dob);
@@ -19,6 +21,15 @@ function Signup(props) {
   const [day,setday] = useState('');
   const [month,setmonth] = useState('');
   const [year,setyear] = useState('');
+
+
+   //Lock Screen to portrait
+   Orientation.addOrientationListener((orientation)=>{
+    if(orientation == "LANDSCAPE"){
+      Orientation.lockToPortrait();
+    }
+  })
+
   return (
     <ImageBackground source={require("../../assets/images/getstarted.jpg")} style={styles.image}>
         <View style={styles.container}>

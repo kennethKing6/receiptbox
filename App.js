@@ -3,6 +3,10 @@ import { createAppContainer } from "react-navigation";
 import { createStackNavigator } from "react-navigation-stack";
 import { AppLoading } from "expo";
 import * as Font from "expo-font";
+import * as eva from '@eva-design/eva';
+import { ApplicationProvider, IconRegistry, Layout, Text } from '@ui-kitten/components';
+import { EvaIconsPack } from '@ui-kitten/eva-icons';
+import { default as theme } from './assets/custom-theme.json';
 
 import ReceiptScreen from "./src/screens/ReceiptScreen/ReceiptScreen";
 import PurchasesScreen from "./src/screens/ExpenseScreen/Purchases";
@@ -15,7 +19,7 @@ import * as firebase from 'firebase';
 import SignupScreen from "./src/screens/SignupScreen/SignupScreen";
 import UserEmailScreen from "./src/screens/UserEmailScreen/UserEmailScreen";
 import AppCredentialScreen from "./src/screens/AppCredentialScreen/AppCredentialScreen";
-
+import Orientation from 'react-native-orientation';
 import {BackgroundTaskOperation} from './src/BackgroundTask/BackgroundOpertaions';
 
 
@@ -73,14 +77,17 @@ setupApp().then().catch((err)=>{
 //   BackgroundTask.finish();
 // })
 
-
-
+ Orientation.getInitialOrientation();
 const AppContainer = createAppContainer(StackNavigation);
 
 function App() {
   return(
-    
-  <AppContainer/>
+    <>
+    <IconRegistry icons={EvaIconsPack} />
+    <ApplicationProvider {...eva} theme={{ ...eva.light, ...theme }}>
+     <AppContainer/>
+    </ApplicationProvider>
+  </>
   )
 }
 

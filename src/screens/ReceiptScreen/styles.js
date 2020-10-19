@@ -1,8 +1,10 @@
+import { StyleSheet,Dimensions} from "react-native";
+
 const styles = StyleSheet.create({
     container: {
       flex: 1,
-      backgroundColor: "rgba(208,2,27,1)",
-      height:window.height,
+      justifyContent: 'flex-start',
+      alignItems: 'center',
   
     },
     image: {
@@ -20,7 +22,19 @@ const styles = StyleSheet.create({
      
     },
     card:{
-      margin:10,
-    }
+      height:"80%",
+      width:"80%",
+      alignItems:"center",
+      alignSelf:"center",
+      margin:30,
+      backgroundColor:"#999999"
+
+    },
+    receipt: {
+     width:"100%",
+     height:"100%",
+
+     
+  }
   });
   export default styles;

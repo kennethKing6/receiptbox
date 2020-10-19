@@ -1,4 +1,4 @@
-import React, { Component, useState } from "react";
+import React, { Component, useState,useEffect } from "react";
 import {
   View,
   TouchableHighlight,
@@ -6,13 +6,15 @@ import {
   TextInput,
   TouchableWithoutFeedback,
   Keyboard,
-  ScrollView,Dimensions
+  ScrollView,Dimensions 
 } from 'react-native';
 import styles from './styles';
-import MaterialUnderlineTextbox from "../../components/MaterialUnderlineTextbox";
-import MaterialRightIconTextbox from "../../components/MaterialRightIconTextbox";
-import CupertinoButtonPurple from "../../components/CupertinoButtonPurple";
 import * as firebase from 'firebase';
+import { Icon, Input } from '@ui-kitten/components';
+import Orientation from 'react-native-orientation';
+
+
+
 
 
 import { reject } from "lodash";
@@ -64,58 +66,76 @@ function signin(email,password){
 const window = Dimensions.get('window');
 
 
+ 
 
 
- function SigninScreen({navigation}){
+ function SigninScreen(props){
   const [email,setEmail] = useState("");
   const [password,setPassword] = useState("");
+  const [secureTextEntry, setSecureTextEntry] = useState(true);
+ 
+  Orientation.getOrientation((err, orientation) => {
+    console.log(`Current Device Orientation: ${orientation}`);
+    Orientation.lockToPortrait();
+  });
 
-  
+  const toggleSecureEntry = () => {
+    setSecureTextEntry(!secureTextEntry);
+  };
+   
+  const AlertIcon = (props) => (
+    <Icon {...props} name='alert-circle-outline'/>
+  );
+  const renderIcon = (props) => (
+    <TouchableWithoutFeedback onPress={toggleSecureEntry}>
+      <Icon {...props} name={secureTextEntry ? 'eye-off' : 'eye'}/>
+    </TouchableWithoutFeedback>
+  );
   
 
   return (
+    
 <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
-        <NavBar title="Sign in" />
         <ScrollView style={styles.container}>
           <View>
-            <Text style={styles.title}>Sign in</Text>
-            <View style={styles.inputContainer}>
-              <TextInput
-                style={styles.input}
-                placeholder="username"
-                onChangeText={text => setEmail(text)}
+            <Text style={[styles.title]}>Sign in</Text>
+            <Input
+                placeholder='Enter your email'
                 value={email}
+                onChangeText={email => setEmail(email)}
               />
-            </View>
-            <View style={styles.inputContainer}>
-              <TextInput
-                style={styles.input}
-                placeholder="Password"
-                onChangeText={text => setPassword(text)}
-                value={password}
-              />
-            </View>
-            <View style={styles.logContainer}>
+            <Input
+              value={password}
+              label='Password'
+              placeholder='Enter password'
+              caption='Should contain at least 6 symbols'
+              accessoryRight={renderIcon}
+              captionIcon={AlertIcon}
+              secureTextEntry={secureTextEntry}
+              onChangeText={text => setPassword(text)}
+            />
+            <View style={[styles.logContainer]}>
               <TouchableHighlight
                 style={styles.loginContainer}
                 onPress={() =>{
-                  const re = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
-            if(re.test(String(email).toLowerCase()) && password.length >= 6){
-              //  signin(email,password);
+            //       const re = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
+            // if(re.test(String(email).toLowerCase()) && password.length >= 6){
+            //   //  signin(email,password);
 
-               signin(email,password).then((user_id)=>{
-                  navigation.navigate("ReceiptScreen");         
+            //    signin(email,password).then((user_id)=>{
+            //       navigation.navigate("ReceiptScreen");         
                 
-               }).catch((err)=>{
-                 console.log("The error is: " + err.message);
-                 throw err;
-               }) ;
+            //    }).catch((err)=>{
+            //      console.log("The error is: " + err.message);
+            //      throw err;
+            //    }) ;
            
              
-            }else{
-              alert("Please enter a valid email or 6 character password or more");
+            // }else{
+            //   alert("Please enter a valid email or 6 character password or more");
             
-            }
+            // }
+            props.navigation.navigate("ScanScreen");
   
                 } }
               >
@@ -123,10 +143,10 @@ const window = Dimensions.get('window');
               </TouchableHighlight>
               <Text style={styles.orTxt}>OR</Text>
               <TouchableHighlight
-                style={styles.facebookContainer}
-                onPress={() => this.onPressFacebookButton()}
+                style={[styles.facebookContainer]}
+                onPress={() => props.navigation.navigate("SignupScreen")}
               >
-                <Text style={styles.facebookTxt}>Facebook Login</Text>
+                <Text style={styles.facebookTxt}>Sign up</Text>
               </TouchableHighlight>
             </View>
           </View>

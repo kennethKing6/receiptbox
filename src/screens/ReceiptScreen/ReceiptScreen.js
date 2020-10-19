@@ -1,40 +1,37 @@
 import React, { Component } from "react";
-import { StyleSheet, View, Image, Dimensions } from "react-native";
+import { StyleSheet, View, Image, Dimensions,Text,ProgressBarAndroid,WebView  } from "react-native";
 import CustomStatusBar from '../../components/StatusBarLayout';
 import Pdf from 'react-native-pdf';
 import styles from './styles';
 import CardView from 'react-native-cardview';
+import Orientation from 'react-native-orientation';
+import TopNavigationComponent from '../../components/TopNavigationComponent/TopNavigationComponent';
+
 
 
 
 const window = Dimensions.get('window');
-const receipt = "http://www.africau.edu/images/default/sample.pdf";
+const source = {uri:'http://samples.leanpub.com/thereactnativebook-sample.pdf'};
 function ReceiptScreen(props) {
+   //Lock Screen to portrait
+   Orientation.addOrientationListener((orientation)=>{
+    if(orientation == "LANDSCAPE"){
+      Orientation.lockToPortrait();
+    }
+  })
   return (
-    <View style={styles.container}>
-    <CustomStatusBar onPress={props} header={"Receipt"} />
-            <CardView 
-             cardElevation={2}
-            cardMaxElevation={2}
-            cornerRadius={5}
-            style={styles.card}>
-              <Pdf
-                      source={receipt}
-                      onLoadComplete={(numberOfPages,filePath)=>{
-                          console.log(`number of pages: ${numberOfPages}`);
-                      }}
-                      onPageChanged={(page,numberOfPages)=>{
-                          console.log(`current page: ${page}`);
-                      }}
-                      onError={(error)=>{
-                          console.log(error);
-                      }}
-                      onPressLink={(uri)=>{
-                          console.log(`Link presse: ${uri}`)
-                      }}
-                      />
-            </CardView>
-      
+    <View>
+      <TopNavigationComponent backgroundColor="#45BF55" onPress={()=>props.navigation.navigate("ReceiptListScreen")} title="Store"/>
+
+       <CardView
+        cardElevation={20}
+          cardMaxElevation={20}
+          cornerRadius={5}
+          style={styles.card}
+       >
+        <Image source={require('../../assets/icons/invoice.png')} resizeMode="contain" style={styles.receipt}/>
+      </CardView>   
+           
       
     </View>
   );
