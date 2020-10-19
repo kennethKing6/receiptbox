@@ -24,7 +24,8 @@ function Menu(props) {
 
  
 
- 
+   Orientation.lockToPortrait();
+
   return (
     <View style={styles.container}>
    

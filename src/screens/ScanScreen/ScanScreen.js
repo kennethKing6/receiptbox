@@ -53,7 +53,7 @@ function ScanScreen(props) {
     return () => backHandler.remove();
   }, []);
 
-  // Orientation.lockToLandscape();
+  Orientation.lockToLandscape();
   // Orientation.getOrientation((err, orientation) => {
   //   console.log(`Current Device Orientation: ${orientation}`);
   //   Orientation.lockToLandscape();
