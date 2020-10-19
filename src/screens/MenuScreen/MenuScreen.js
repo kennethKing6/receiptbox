@@ -10,11 +10,17 @@ import BottomNavigation from '../../components/BottomNavigation/BottomNavigation
 
 
 function Menu(props) {
-  Orientation.getOrientation((err, orientation) => {
-    console.log(`Current Device Orientation: ${orientation}`);
-    Orientation.lockToPortrait();
-  });
-
+  useEffect(()=>{
+    const orientationDidChange = (orientation) => {
+      console.log("Orientation")
+       if (orientation === 'LANDSCAPE') {
+         Orientation.lockToPortrait();
+       } 
+     }
+     Orientation.addOrientationListener(orientationDidChange)
+     return ()=> Orientation.removeOrientationListener(orientationDidChange) ;
+ 
+   },[])
 
  
 
@@ -36,7 +42,7 @@ function Menu(props) {
              
 
                 <View  style={[styles.rowMenuItems,{backgroundColor:"#F24130"}]}>
-                        <TouchableOpacity onPress={()=>props.navigation.navigate("RewardScreen")}>
+                        <TouchableOpacity onPress={()=>props.navigation.navigate("RewardsScreen")}>
                         <Image source={require("../../assets/icons/reward-card.png")} style={[styles.icon,{width:"60%",height:"60%"}]} resizeMode="contain"/>
                             <Text style={styles.menuText}>Rewards</Text>
                         </TouchableOpacity>
@@ -67,19 +73,15 @@ function Menu(props) {
                       <Text style={styles.menuText}>Tracker</Text>
                      </TouchableOpacity>
             </View>
-            <View style={styles.rowMenuItems}>
-                  <TouchableOpacity onPress={()=>props.navigation.navigate("GroupScreen")}>
-                  <MaterialCommunityIconsIcon
-                    name="share-variant"
-                    style={styles.icon}
-
-                  ></MaterialCommunityIconsIcon>
-                  <Text style={styles.menuText}>Share now</Text>
+            <View style={[styles.rowMenuItems,{backgroundColor:"#080E33"}]}>
+                  <TouchableOpacity onPress={()=>props.navigation.navigate("PurchasesScreen")}>
+                  <Image source={require("../../assets/icons/income.png")} style={[styles.icon,{width:"60%",height:"60%"}]} resizeMode="contain"/>
+                  <Text style={styles.menuText}>All expenses</Text>
                   </TouchableOpacity>
             </View>
 
         </View>
-      <BottomNavigation />
+      <BottomNavigation  props={props} selectedIndex={0}/>
     </View>
   );
 }

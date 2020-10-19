@@ -1,5 +1,5 @@
 import React, { Component, useState,useEffect } from "react";
-import { StyleSheet, View, Image, Dimensions,StatusBar,Text} from "react-native";
+import { StyleSheet, View, Image, Dimensions,StatusBar,Text,BackHandler} from "react-native";
 import CupertinoButtonPurple1 from "../../components/CupertinoButtonPurple1";
 import CupertinoHeaderStatusBar from "../../components/CupertinoHeaderStatus";
 import Barcode from "react-native-barcode-builder";
@@ -28,11 +28,36 @@ var windowWidth = window.width * 0.38;
 function ScanScreen(props) {
   const [email,setEmail] = useState(null);
 
-  Orientation.lockToLandscape();
-  Orientation.getOrientation((err, orientation) => {
-    console.log(`Current Device Orientation: ${orientation}`);
-    Orientation.lockToLandscape();
-  });
+  useEffect(()=>{
+   const orientationDidChange = (orientation) => {
+     console.log("Orientation")
+      if (orientation === 'PORTRAIT') {
+        Orientation.lockToLandscape();
+      } 
+    }
+    return ()=> Orientation.addOrientationListener(orientationDidChange);
+
+  },[])
+
+  useEffect(() => {
+    const backAction = () => {
+      props.navigation.navigate("MenuScreen");
+      return true;
+    };
+
+    const backHandler = BackHandler.addEventListener(
+      "hardwareBackPress",
+      backAction
+    );
+
+    return () => backHandler.remove();
+  }, []);
+
+  // Orientation.lockToLandscape();
+  // Orientation.getOrientation((err, orientation) => {
+  //   console.log(`Current Device Orientation: ${orientation}`);
+  //   Orientation.lockToLandscape();
+  // });
 
 
   async function getUserEmail(){

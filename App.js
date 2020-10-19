@@ -15,12 +15,17 @@ import ScanScreen from "./src/screens/ScanScreen/ScanScreen";
 import SigninScreen from "./src/screens/SigninScreen/SigninScreen";
 import MenuScreen from "./src/screens/MenuScreen/MenuScreen";
 import ReceiptListScreen from "./src/screens/RecipesListScreen/RecipesListScreen";
+import NewsListScreen from './src/screens/NewsListScreen/NewsListScreen';
+import GroupsScreen from './src/screens/GroupsScreen/GroupsScreen';
+import RewardsScreen from  './src/screens/RewardsScreen/RewardsScreen';
+import TrackerScreen from  './src/screens/TrackerScreen/TrackerScreen';
 import * as firebase from 'firebase';
 import SignupScreen from "./src/screens/SignupScreen/SignupScreen";
 import UserEmailScreen from "./src/screens/UserEmailScreen/UserEmailScreen";
 import AppCredentialScreen from "./src/screens/AppCredentialScreen/AppCredentialScreen";
 import Orientation from 'react-native-orientation';
 import {BackgroundTaskOperation} from './src/BackgroundTask/BackgroundOpertaions';
+
 
 
 
@@ -52,7 +57,11 @@ const StackNavigation = createStackNavigator(
     SignupScreen:SignupScreen,
     AppCredentialScreen:AppCredentialScreen,
     UserEmailScreen:UserEmailScreen,
-    ReceiptListScreen:ReceiptListScreen
+    ReceiptListScreen:ReceiptListScreen,
+    NewsListScreen:NewsListScreen,
+    GroupsScreen:GroupsScreen,
+    RewardsScreen:RewardsScreen,
+    TrackerScreen:TrackerScreen,
   },
   {
     headerMode: "none"

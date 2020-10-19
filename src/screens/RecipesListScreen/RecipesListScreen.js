@@ -13,7 +13,6 @@ import Orientation from 'react-native-orientation';
 import TopNavigationComponent from '../../components/TopNavigationComponent/TopNavigationComponent';
 import DividerListComponent from '../../components/ListItem/DividerListComponent';
 import {LineChart} from "react-native-chart-kit";
-import BottomNavigation from '../../components/BottomNavigation/BottomNavigationComponent';
 
 
 
@@ -127,8 +126,7 @@ const receipts =[
     }}
   />
       
-        <DividerListComponent  data={receipts} onPress={()=>props.navigation.navigate("ReceiptScreen")} />
-        <BottomNavigation/>
+        <DividerListComponent   data={receipts} onPress={()=>props.navigation.navigate("ReceiptScreen")}  />
 
        
       </View>
