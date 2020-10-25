@@ -7,7 +7,7 @@ import { FlatList } from 'react-native-gesture-handler';
 import { spendingArray, expensesData, chartConfig, payments } from './data/dataArrays';
 const { width, height } = Dimensions.get('window');
 const SCREEN_WIDTH = width < height ? width : height;
-import Orientation from 'react-native-orientation';
+// import Orientation from 'react-native-orientation';
 
 
 export default class Purchases extends React.Component {
@@ -18,11 +18,11 @@ export default class Purchases extends React.Component {
   constructor(props) {
     super(props);
      //Lock Screen to portrait
-   Orientation.addOrientationListener((orientation)=>{
-    if(orientation == "LANDSCAPE"){
-      Orientation.lockToPortrait();
-    }
-  })
+  //  Orientation.addOrientationListener((orientation)=>{
+  //   if(orientation == "LANDSCAPE"){
+  //     Orientation.lockToPortrait();
+  //   }
+  // })
   }
 
   renderItem = ({ item }) => (

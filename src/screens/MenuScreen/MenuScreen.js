@@ -1,35 +1,27 @@
-import React, { Component, useState,useEffect } from "react";
+import React, { Component, useState,useEffect,useLayoutEffect } from "react";
 import { StyleSheet, View, Text,Image,ScrollView } from "react-native";
 import MaterialCommunityIconsIcon from "react-native-vector-icons/MaterialCommunityIcons";
 import CustomStatusBar from '../../components/StatusBarLayout'
 import { TouchableOpacity } from "react-native-gesture-handler";
 import styles from './styles';
-import Orientation from 'react-native-orientation';
-import BottomNavigation from '../../components/BottomNavigation/BottomNavigationComponent';
+// import Orientation from 'react-native-orientation';
+import ScreenOrientation, { PORTRAIT, LANDSCAPE } from "react-native-orientation-locker/ScreenOrientation";
+import Orientation from 'react-native-orientation-locker';
+
 
 
 
 function Menu(props) {
-  useEffect(()=>{
-    const orientationDidChange = (orientation) => {
-      console.log("Orientation")
-       if (orientation === 'LANDSCAPE') {
-         Orientation.lockToPortrait();
-       } 
-     }
-     Orientation.addOrientationListener(orientationDidChange)
-     return ()=> Orientation.removeOrientationListener(orientationDidChange) ;
- 
-   },[])
-
- 
-
-   Orientation.lockToPortrait();
+  
 
   return (
     <View style={styles.container}>
    
-
+   <ScreenOrientation
+        orientation={PORTRAIT}
+        onChange={orientation => console.log('onChange', orientation)}
+        onDeviceChange={orientation => console.log('onDeviceChange', orientation)}
+      />
           <View style={styles.rowMenu}>
               
                     <View style={[styles.rowMenuItems]} >
@@ -82,7 +74,6 @@ function Menu(props) {
             </View>
 
         </View>
-      <BottomNavigation  props={props} selectedIndex={0}/>
     </View>
   );
 }

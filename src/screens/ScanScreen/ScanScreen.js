@@ -1,4 +1,4 @@
-import React, { Component, useState,useEffect } from "react";
+import React, { Component, useState,useEffect,useLayoutEffect } from "react";
 import { StyleSheet, View, Image, Dimensions,StatusBar,Text,BackHandler} from "react-native";
 import CupertinoButtonPurple1 from "../../components/CupertinoButtonPurple1";
 import CupertinoHeaderStatusBar from "../../components/CupertinoHeaderStatus";
@@ -8,7 +8,11 @@ import {BackgroundTaskOperation} from '../../BackgroundTask/BackgroundOpertaions
 import styles from './styles';
 import * as eva from '@eva-design/eva';
 import TopNavigationComponent from '../../components/TopNavigationComponent/TopNavigationComponent';
-import Orientation from 'react-native-orientation';
+// import Orientation from 'react-native-orientation';
+import ScreenOrientation, { PORTRAIT, LANDSCAPE } from "react-native-orientation-locker/ScreenOrientation";
+import Orientation from 'react-native-orientation-locker';
+
+
 
 
 
@@ -27,18 +31,9 @@ var  width = 100;
 var windowWidth = window.width * 0.38;
 function ScanScreen(props) {
   const [email,setEmail] = useState(null);
+  Orientation.lockToLandscape();
 
-  useEffect(()=>{
-   const orientationDidChange = (orientation) => {
-     console.log("Orientation")
-      if (orientation === 'PORTRAIT') {
-        Orientation.lockToLandscape();
-      } 
-    }
-    return ()=> Orientation.addOrientationListener(orientationDidChange);
-
-  },[])
-
+ 
   useEffect(() => {
     const backAction = () => {
       props.navigation.navigate("MenuScreen");
@@ -53,7 +48,6 @@ function ScanScreen(props) {
     return () => backHandler.remove();
   }, []);
 
-  Orientation.lockToLandscape();
   // Orientation.getOrientation((err, orientation) => {
   //   console.log(`Current Device Orientation: ${orientation}`);
   //   Orientation.lockToLandscape();
@@ -72,10 +66,14 @@ function ScanScreen(props) {
   
   return (
     <View style={styles.container} >
+    <ScreenOrientation
+        orientation={LANDSCAPE}
+        onChange={orientation => console.log('onChange', orientation)}
+        onDeviceChange={orientation => console.log('onDeviceChange', orientation)}
+      />
      <TopNavigationComponent title="Menu" onPress={()=>props.navigation.navigate("MenuScreen")} backgroundColor="#45BF55"/>
     <View style={styles.content}>
-      <Text style={styles.scanBarcode}>Scan Barcode</Text>
-      <Barcode value={"kennethemmail28@gmail.com"}  format="CODE128" text={"kennethemmail28@gmail.com"} width={2} height={150}   style={styles.barcode}/>
+      <Barcode value={"kennethemmail28@gmail.com"}  format="CODE128" text={"kennethemmail28@gmail.com"} width={2} height={190}   style={styles.barcode}/>
 
       
       </View>

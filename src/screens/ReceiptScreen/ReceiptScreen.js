@@ -4,7 +4,6 @@ import CustomStatusBar from '../../components/StatusBarLayout';
 import Pdf from 'react-native-pdf';
 import styles from './styles';
 import CardView from 'react-native-cardview';
-import Orientation from 'react-native-orientation';
 import TopNavigationComponent from '../../components/TopNavigationComponent/TopNavigationComponent';
 
 
@@ -13,12 +12,7 @@ import TopNavigationComponent from '../../components/TopNavigationComponent/TopN
 const window = Dimensions.get('window');
 const source = {uri:'http://samples.leanpub.com/thereactnativebook-sample.pdf'};
 function ReceiptScreen(props) {
-   //Lock Screen to portrait
-   Orientation.addOrientationListener((orientation)=>{
-    if(orientation == "LANDSCAPE"){
-      Orientation.lockToPortrait();
-    }
-  })
+  
   return (
     <View>
       <TopNavigationComponent backgroundColor="#45BF55" onPress={()=>props.navigation.navigate("ReceiptListScreen")} title="Store"/>

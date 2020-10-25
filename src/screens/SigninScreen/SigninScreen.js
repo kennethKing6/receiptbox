@@ -1,4 +1,4 @@
-import React, { Component, useState,useEffect } from "react";
+import React, { Component, useState,useEffect,useLayoutEffect } from "react";
 import {
   View,
   TouchableHighlight,
@@ -11,7 +11,8 @@ import {
 import styles from './styles';
 import * as firebase from 'firebase';
 import { Icon, Input } from '@ui-kitten/components';
-import Orientation from 'react-native-orientation';
+// import Orientation from 'react-native-orientation';
+
 
 
 
@@ -52,10 +53,10 @@ function signin(email,password){
       alert('That email address is invalid!');
     }
 
-    alert(error);
-    console.log("the error is " + error.message);
+    console.log("error:",error)
+    alert("Wrong password")
     reject(null);
-    throw error;
+    
   });
   })
   return promise;
@@ -74,10 +75,22 @@ const window = Dimensions.get('window');
   const [password,setPassword] = useState("");
   const [secureTextEntry, setSecureTextEntry] = useState(true);
  
-  Orientation.getOrientation((err, orientation) => {
-    console.log(`Current Device Orientation: ${orientation}`);
-    Orientation.lockToPortrait();
-  });
+  // React.useLayoutEffect(()=>{
+  //   const orientationDidChange = (orientation) => {
+
+  //      if (orientation === 'LANDSCAPE') {
+  //        Orientation.lockToPortrait();
+  //      }else{
+  //        console.log("Kouadio");
+  //      }
+  //    }
+  //    Orientation.addOrientationListener(orientationDidChange);
+ 
+  //   //  return ()=> {Orientation.removeOrientationListener(orientationDidChange);Orientation.unlockAllOrientations };
+ 
+  //  })
+
+ 
 
   const toggleSecureEntry = () => {
     setSecureTextEntry(!secureTextEntry);
@@ -118,24 +131,24 @@ const window = Dimensions.get('window');
               <TouchableHighlight
                 style={styles.loginContainer}
                 onPress={() =>{
-            //       const re = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
-            // if(re.test(String(email).toLowerCase()) && password.length >= 6){
-            //   //  signin(email,password);
+                  const re = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
+            if(password.length >= 6){
+              //  signin(email,password);
 
-            //    signin(email,password).then((user_id)=>{
-            //       navigation.navigate("ReceiptScreen");         
+               signin(email,password).then((user_id)=>{
+                  // navigation.navigate("ReceiptScreen");         
                 
-            //    }).catch((err)=>{
-            //      console.log("The error is: " + err.message);
-            //      throw err;
-            //    }) ;
+               }).catch((err)=>{
+                 console.log("The error is: " + err.message);
+                 throw err;
+               }) ;
            
              
-            // }else{
-            //   alert("Please enter a valid email or 6 character password or more");
+            }else{
+              alert("Please enter a valid email or 6 character password or more");
             
-            // }
-            props.navigation.navigate("ScanScreen");
+            }
+            // props.navigation.navigate("ScanScreen");
   
                 } }
               >

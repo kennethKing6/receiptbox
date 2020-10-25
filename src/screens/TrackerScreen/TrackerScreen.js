@@ -4,6 +4,7 @@ import styles from './styles';
 import TopNavigationComponent from '../../components/TopNavigationComponent/TopNavigationComponent';
 
 
+
 export default function RewardsScreen(props) {
   return (
     <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>

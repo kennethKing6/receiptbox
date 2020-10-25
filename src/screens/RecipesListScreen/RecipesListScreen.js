@@ -8,8 +8,6 @@ import {
   Dimensions
 } from 'react-native';
 import styles from './styles';
-import { getRecipes, getCategoryName } from '../data/MockDataAPI';
-import Orientation from 'react-native-orientation';
 import TopNavigationComponent from '../../components/TopNavigationComponent/TopNavigationComponent';
 import DividerListComponent from '../../components/ListItem/DividerListComponent';
 import {LineChart} from "react-native-chart-kit";
@@ -19,7 +17,7 @@ import {LineChart} from "react-native-chart-kit";
 export default function RecipesListScreen(props) {
   
 
-  Orientation.lockToPortrait();
+  // Orientation.lockToPortrait();
 
    
   

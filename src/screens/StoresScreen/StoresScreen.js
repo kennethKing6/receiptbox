@@ -7,14 +7,14 @@ import * as eva from '@eva-design/eva';
 import TopNavigationComponent from '../../components/TopNavigationComponent/TopNavigationComponent';
 
 import styles from './styles';
-import Orientation from 'react-native-orientation';
+// import Orientation from 'react-native-orientation';
 import CategoryListComponent from '../../components/ListItem/CategoryComponent';
 
 
 
 function Stores(props) {
    //Lock Screen to portrait
-   Orientation.lockToPortrait();
+  //  Orientation.lockToPortrait();
    const storesList = [
     {
       name: 'Superstore',
