@@ -5,7 +5,8 @@ import {
   View,
   TouchableHighlight,
   Image,
-  Dimensions
+  Dimensions,
+  ScrollView
 } from 'react-native';
 import styles from './styles';
 import TopNavigationComponent from '../../components/TopNavigationComponent/TopNavigationComponent';
@@ -72,14 +73,67 @@ const receipts =[
     date:"08/12/2020",
     total:"$100"
   }
+  ,
+  {
+    code: "#9848928952757257725929",
+    date:"08/12/2020",
+    total:"$100"
+  },
+  {
+    code: "#9848928952757257725929",
+    date:"08/12/2020",
+    total:"$100"
+  },
+  {
+    code: "#9848928952757257725929",
+    date:"08/12/2020",
+    total:"$100"
+  },
+  {
+    code: "#9848928952757257725929",
+    date:"08/12/2020",
+    total:"$100"
+  },
+  {
+    code: "#9848928952757257725929",
+    date:"08/12/2020",
+    total:"$100"
+  },
+  {
+    code: "#9848928952757257725929",
+    date:"08/12/2020",
+    total:"$100"
+  },
+  {
+    code: "#9848928952757257725929",
+    date:"08/12/2020",
+    total:"$100"
+  },
+  {
+    code: "#9848928952757257725929",
+    date:"08/12/2020",
+    total:"$100"
+  },
+  {
+    code: "#9848928952757257725929",
+    date:"08/12/2020",
+    total:"$100"
+  },
+  {
+    code: "#9848928952757257725929",
+    date:"08/12/2020",
+    total:"$100"
+  }
 ]
   
 
  
     return (
       <View>
-        <TopNavigationComponent backgroundColor="white" onPress={()=>props.navigation.navigate("StoresScreen")} title=""/>
-        <LineChart
+       
+          <ScrollView>
+          <TopNavigationComponent backgroundColor="white" onPress={()=>props.navigation.navigate("StoresScreen")} title=""/>
+          <LineChart
     data={{
       labels: ["January", "February", "March", "April", "May", "June"],
       datasets: [
@@ -123,8 +177,8 @@ const receipts =[
       
     }}
   />
-      
-        <DividerListComponent   data={receipts} onPress={()=>props.navigation.navigate("ReceiptScreen")}  />
+              <DividerListComponent   data={receipts} onPress={()=>props.navigation.navigate("ReceiptScreen")}  />
+          </ScrollView>
 
        
       </View>

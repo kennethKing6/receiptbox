@@ -26,7 +26,7 @@ import SigninScreen from "./src/screens/SigninScreen/SigninScreen";
 import MenuScreen from "./src/screens/MenuScreen/MenuScreen";
 import ReceiptListScreen from "./src/screens/RecipesListScreen/RecipesListScreen";
 import NewsListScreen from './src/screens/NewsListScreen/NewsListScreen';
-import GroupsScreen from './src/screens/GroupsScreen/GroupsScreen';
+import GroupsScreen from './src/screens/GroupsScreens/GroupsScreen/GroupsScreen';
 import RewardsScreen from  './src/screens/RewardsScreen/RewardsScreen';
 import TrackerScreen from  './src/screens/TrackerScreen/TrackerScreen';
 import SignupScreen from "./src/screens/SignupScreen/SignupScreen";
@@ -159,7 +159,7 @@ function BottomNavigator() {
       tabBarOptions={{
         activeTintColor: '#06FF44',
       }}>
-      <Tab.Screen name="Menu" component={MenuScreensStackNavigator} 
+      <Tab.Screen name="ReceiptBox" component={MenuScreensStackNavigator} 
         options={{
           tabBarIcon: ({ color, size }) => (
             <BoxIcon name="inbox" size={size} color={color}/>

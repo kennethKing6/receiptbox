@@ -17,7 +17,7 @@ export default function DividerListComponent(props){
       );
       
        const receiptItem = ({item,index}) => (
-        <View key={index}         >
+        <View key={index}>
              <TouchableOpacity>
                 <ListItem
                 title={item.code}

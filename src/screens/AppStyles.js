@@ -3,6 +3,12 @@ import { StyleSheet, Dimensions, Platform } from 'react-native';
 const { width, height } = Dimensions.get('window');
 const SCREEN_WIDTH = width < height ? width : height;
 
+export const TopNavigation = StyleSheet.create({
+  Green:{
+    backgroundColor:"#45BF55",
+    color:"white"
+  }
+})
 export const landing = StyleSheet.create({
   container: {
     flex: 1,
