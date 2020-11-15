@@ -6,7 +6,13 @@ const SCREEN_WIDTH = width < height ? width : height;
 export const TopNavigation = StyleSheet.create({
   Green:{
     backgroundColor:"#45BF55",
-    color:"white"
+    color:"white",
+    width:"100%"
+  },
+  White:{
+    backgroundColor:"white",
+    color:"white",
+    width:"100%"
   }
 })
 export const landing = StyleSheet.create({

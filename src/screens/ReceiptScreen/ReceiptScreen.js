@@ -5,6 +5,7 @@ import Pdf from 'react-native-pdf';
 import styles from './styles';
 import CardView from 'react-native-cardview';
 import TopNavigationComponent from '../../components/TopNavigationComponent/TopNavigationComponent';
+import {TopNavigation} from '../AppStyles'
 
 
 
@@ -15,7 +16,7 @@ function ReceiptScreen(props) {
   
   return (
     <View>
-      <TopNavigationComponent backgroundColor="#45BF55" onPress={()=>props.navigation.navigate("ReceiptListScreen")} title="Store"/>
+      <TopNavigationComponent style={TopNavigation.Green} onPress={()=>props.navigation.navigate("ReceiptListScreen")} title="Store"/>
 
        <CardView
         cardElevation={20}

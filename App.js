@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { createAppContainer  } from "react-navigation";
 // import { createStackNavigator } from "@react-navigation/stack";
 
 
@@ -25,13 +24,14 @@ import ScanScreen from "./src/screens/ScanScreen/ScanScreen";
 import SigninScreen from "./src/screens/SigninScreen/SigninScreen";
 import MenuScreen from "./src/screens/MenuScreen/MenuScreen";
 import ReceiptListScreen from "./src/screens/RecipesListScreen/RecipesListScreen";
-import NewsListScreen from './src/screens/NewsListScreen/NewsListScreen';
+import NewsListScreen from './src/screens/NewsScreen/NewsListScreen/NewsListScreen';
 import GroupsScreen from './src/screens/GroupsScreens/GroupsScreen/GroupsScreen';
 import RewardsScreen from  './src/screens/RewardsScreen/RewardsScreen';
 import TrackerScreen from  './src/screens/TrackerScreen/TrackerScreen';
 import SignupScreen from "./src/screens/SignupScreen/SignupScreen";
 import UserEmailScreen from "./src/screens/UserEmailScreen/UserEmailScreen";
 import AppCredentialScreen from "./src/screens/AppCredentialScreen/AppCredentialScreen";
+import DetailsNewsScreen from './src/screens/NewsScreen/DetailsScreen/DetailsNewsScreen'; 
 // import Orientation from 'react-native-orientation';
 import {BackgroundTaskOperation} from './src/BackgroundTask/BackgroundOpertaions';
 import * as firebase from 'firebase';
@@ -102,8 +102,8 @@ const MenuStackNavigator = createStackNavigator();
 function MenuScreensStackNavigator(){
   return (
     <MenuStackNavigator.Navigator headerMode="none">
-      <MenuStackNavigator.Screen name="MenuScreen" component={MenuScreen} />
       <MenuStackNavigator.Screen name="ScanScreen" component={ScanScreen} />
+      <MenuStackNavigator.Screen name="MenuScreen" component={MenuScreen} />
       <MenuStackNavigator.Screen name="StoresScreen" component={StoresScreen} />
       <MenuStackNavigator.Screen name="ReceiptListScreen" component={ReceiptListScreen} />
       <MenuStackNavigator.Screen name="RewardsScreen" component={RewardsScreen} />
@@ -127,6 +127,9 @@ function NewsListScreensStackNavigator(){
   return (
     <NewsListStackNavigator.Navigator headerMode="none">
       <NewsListStackNavigator.Screen  name="NewsListScreen" component={NewsListScreen}/>
+      <NewsListStackNavigator.Screen  name="DetailsNewsScreen" component={DetailsNewsScreen}/>
+
+      
      </NewsListStackNavigator.Navigator>
 
 

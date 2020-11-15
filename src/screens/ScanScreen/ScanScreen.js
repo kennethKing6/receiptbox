@@ -11,6 +11,7 @@ import TopNavigationComponent from '../../components/TopNavigationComponent/TopN
 // import Orientation from 'react-native-orientation';
 import ScreenOrientation, { PORTRAIT, LANDSCAPE } from "react-native-orientation-locker/ScreenOrientation";
 import Orientation from 'react-native-orientation-locker';
+import {TopNavigation} from '../AppStyles'
 
 
 
@@ -71,7 +72,7 @@ function ScanScreen(props) {
         onChange={orientation => console.log('onChange', orientation)}
         onDeviceChange={orientation => console.log('onDeviceChange', orientation)}
       />
-     <TopNavigationComponent title="Menu" onPress={()=>props.navigation.navigate("MenuScreen")} backgroundColor="#45BF55"/>
+     <TopNavigationComponent title="Menu" onPress={()=>props.navigation.navigate("MenuScreen")} style={TopNavigation.Green}/>
     <View style={styles.content}>
       <Barcode value={"kennethemmail28@gmail.com"}  format="CODE128" text={"kennethemmail28@gmail.com"} width={2} height={190}   style={styles.barcode}/>
 

@@ -19,7 +19,7 @@ export default function TopNavigationComponent(props){
         <TopNavigation
         accessoryLeft={BackAction}
         title={props.title}
-        style={{backgroundColor:props.backgroundColor}}
+        style={props.style}
         />
         </TouchableOpacity>
     )

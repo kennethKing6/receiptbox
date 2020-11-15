@@ -1,10 +1,9 @@
 import React from 'react';
 import { Text, View } from 'react-native';
 import styles from './styles';
-import {TopNavigation} from '../AppStyles'
-import BottomNavigation from '../../components/BottomNavigation/BottomNavigationComponent';
+import {TopNavigation} from '../../AppStyles'
 import ScreenOrientation, { PORTRAIT, LANDSCAPE } from "react-native-orientation-locker/ScreenOrientation";
-import ListItemCardComponent from '../../components/ListItem/ListItemCardComponent';
+import ListItemCardComponent from '../../../components/ListItem/ListItemCardComponent';
 
 export default function NewsListScreen(props) {
   const news =[
@@ -62,7 +61,7 @@ export default function NewsListScreen(props) {
         onChange={orientation => console.log('onChange', orientation)}
         onDeviceChange={orientation => console.log('onDeviceChange', orientation)}
       />  
-      <ListItemCardComponent data={news}/>
+      <ListItemCardComponent data={news} propValue={props}/>
     </View>
   );
 }
